@@ -1,61 +1,61 @@
 #include "Player.hpp"
 
-Player(){
+Player::Player(){
 
 }
 
-~Player(){
+Player::~Player(){
 
 }
 
-const Hand& getHand() const{
+const Hand& Player::getHand() const{
 
 }
 
-void setHand(const Hand& hand){
+void Player::setHand(const Hand& hand){
 
 }
 
-int getScore() const{
+int Player::getScore() const{
 
 }
 
-void setScore(const int& score){
+void Player::setScore(const int& score){
 
 }
 
-void play(ActionCard&& card){
+void Player::play(ActionCard&& card){
 
 }
 
-void drawPointCard(){
+void Player::drawPointCard(){
 
 }
 
-void playPointCard(){
+void Player::playPointCard(){
 
 }
 
-void setOpponent(Player* opponent){
+void Player::setOpponent(Player* opponent){
 
 }
 
-Player* getOpponent(){
+Player* Player::getOpponent(){
 
 }
 
-void setActionDeck(Deck<ActionCard>* actiondeck){
+void Player::setActionDeck(Deck<ActionCard>* actiondeck){
 
 }
 
-Deck<ActionCard>* getActionDeck(){
+Deck<ActionCard>* Player::getActionDeck(){
 
 }
 
-void setPointDeck(Deck<PointCard>* pointdeck){
+void Player::setPointDeck(Deck<PointCard>* pointdeck){
 
 }
 
-Deck<PointCard>* getPointDeck(){
+Deck<PointCard>* Player::getPointDeck(){
     
 }

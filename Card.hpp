@@ -96,6 +96,7 @@ class Card
          * @param: const reference to a boolean
          */
         void setDrawn(const bool& drawn);
+    
 
         // Pure Virtual Functions
         virtual void Print() const = 0;

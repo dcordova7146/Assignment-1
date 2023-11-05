@@ -43,5 +43,8 @@ class ActionCard : public Card
          * Note: For [ImageData]: If there is no image data, print "No image data" instead
          */
         virtual void Print() const override;
+
+        //Helper Method to aide in the isPlayable method
+        bool validInstro(std::string instro);
 };
 #endif

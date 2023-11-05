@@ -1,31 +1,32 @@
 #include "Deck.hpp"
 
-Deck(){
-
-}
-~Deck(){
-
-}
-void AddCard(const CardType& card){
+Deck<CardType>::Deck(){
 
 }
 
-CardType&& Draw(){
+Deck<CardType>::~Deck(){
+
+}
+void Deck<CardType>::AddCard(const CardType& card){
 
 }
 
-bool IsEmpty() const{
+CardType&& Deck<CardType>::Draw(){
 
 }
 
-void Shuffle(){
+bool Deck<CardType>::IsEmpty() const{
 
 }
 
-int getSize() const{
+void Deck<CardType>::Shuffle(){
 
 }
 
-std::vector<CardType> getDeck() const{
+int Deck<CardType>::getSize() const{
+
+}
+
+std::vector<CardType> Deck<CardType>::getDeck() const{
     
 }

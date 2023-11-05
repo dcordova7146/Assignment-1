@@ -1,44 +1,44 @@
 #include "Hand.hpp"
 
-Hand(){
+Hand::Hand(){
 
 }
-~Hand(){
-
-}
-
-Hand(const Hand& other){
+Hand::~Hand(){
 
 }
 
-Hand& operator=(const Hand& other){
+Hand::Hand(const Hand& other){
 
 }
 
-Hand(Hand&& other){
+Hand& Hand::operator=(const Hand& other){
 
 }
 
-Hand& operator=(Hand&& other){
+Hand::Hand(Hand&& other){
 
 }
 
-const std::deque<PointCard>& getCards() const{
+Hand& Hand::operator=(Hand&& other){
 
 }
 
-void addCard(PointCard&& card){
+const std::deque<PointCard>& Hand::getCards() const{
 
 }
 
-bool isEmpty() const{
+void Hand::addCard(PointCard&& card){
 
 }
 
-void Reverse(){
+bool Hand::isEmpty() const{
 
 }
 
-int PlayCard(){
+void Hand::Reverse(){
+
+}
+
+int Hand::PlayCard(){
     
 }
