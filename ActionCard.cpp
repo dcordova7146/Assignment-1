@@ -8,11 +8,11 @@ ActionCard::ActionCard(){
 }
 
 bool ActionCard::isPlayable(){
-    return (getDrawn() && validInstro(getInstruction()));
+    return (getDrawn() && validInstro(getInstruction())); // check draw state and validate instruction useing helper method
 }
 
 bool ActionCard::validInstro(std::string instro){
-    if(instro.empty()){
+    if(instro.empty()){ // first check if the instruction is empty
         return false;
     }
     if(instro == "REVERSE HAND" || instro == "SWAP HAND WITH OPPONENT"){
@@ -37,7 +37,7 @@ bool ActionCard::validInstro(std::string instro){
         return false;       
     }
 
-    for(char x : words[1]){
+    for(char x : words[1]){ //checking for valid integer value
        if (!(x != '1' || x!= '2' || x!='3'||x!='4'||x!='5'||x!='6'||x!='7'||x!='8'||x!='9'||x!='0')){
         return false;
        }  

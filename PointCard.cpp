@@ -9,12 +9,12 @@ PointCard::PointCard(){
 
 bool PointCard::isPlayable(){
     std::string instro = getInstruction();
-    for(char x : instro){
+    for(char x : instro){ //iterate through an instruction and test if it is a number
        if (!(x != '1' || x!= '2' || x!='3'||x!='4'||x!='5'||x!='6'||x!='7'||x!='8'||x!='9'||x!='0')){
         return false;
        }
     }   
-    return (getDrawn()); 
+    return (getDrawn()); //valid instruction is implied so all is left is to check draw state
 }
 
 void PointCard::Print() const{

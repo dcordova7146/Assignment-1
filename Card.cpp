@@ -26,9 +26,9 @@ Card::Card(Card&& rhs):bitmap_(rhs.bitmap_){ //move constructor
 
 Card& Card::operator=(Card&& rhs){ //move assignment operator
     
-    std::swap( bitmap_, rhs.bitmap_ );
-    std::swap( instruction_, rhs.instruction_ );
-    std::swap( drawn_, rhs.drawn_ );
+    std::swap(bitmap_, rhs.bitmap_);
+    std::swap(instruction_, rhs.instruction_);
+    std::swap(drawn_, rhs.drawn_);
     return *this;
 
 }
