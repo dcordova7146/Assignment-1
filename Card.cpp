@@ -5,16 +5,28 @@ Card::~Card(){ //destructor
 } 
 
 Card::Card(const Card& rhs){ //copy constructor
+    cardType_ = rhs.cardType_;
     instruction_ = rhs.instruction_;
-    bitmap_ = new int(*rhs.bitmap_);
     drawn_ = rhs.drawn_;
+    if(rhs.bitmap_ != nullptr){
+        bitmap_ = new int[80];
+        for(int i =0;i<80;i++){ //deep copy prevented my memory leak
+            bitmap_[i] = rhs.bitmap_[i];
+        } 
+    }else
+        bitmap_ = nullptr;
+        
 }
 
 Card& Card::operator=(const Card& rhs){ //copy assignment operator
     if(this != &rhs){
-        *bitmap_ = *rhs.bitmap_; 
+        cardType_ = rhs.cardType_;
         instruction_ = rhs.instruction_;
         drawn_ = rhs.drawn_;  
+        bitmap_ = new int[80]; 
+        for(int i =0;i<80;i++){ //deep copy 
+            bitmap_[i] =rhs.bitmap_[i];
+        }
     }
     return *this;
 }

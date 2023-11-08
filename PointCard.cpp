@@ -1,9 +1,9 @@
 #include "PointCard.hpp"
 
 PointCard::PointCard(){
-    setType(POINT_CARD);
-    setInstruction("");
-    setImageData(nullptr);
+    // setType(POINT_CARD);
+    // setInstruction("");
+    // setImageData(nullptr);
     setDrawn(false);
 }
 

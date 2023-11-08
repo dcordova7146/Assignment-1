@@ -23,6 +23,7 @@ Hand::Hand(Hand&& other){ //move constructor
 
 Hand& Hand::operator=(Hand&& other){ //move assignment
     std::swap(cards_, other.cards_);
+    return *this;
 }
 
 const std::deque<PointCard>& Hand::getCards() const{
