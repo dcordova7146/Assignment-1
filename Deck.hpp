@@ -71,7 +71,6 @@ class Deck
 };
 
 //#include "Deck.cpp"
-#endif
 
 template <typename CardType>
 Deck<CardType>::Deck(){
@@ -119,3 +118,4 @@ std::vector<CardType> Deck<CardType>::getDeck() const{
     return cards_;
     
 }
+#endif

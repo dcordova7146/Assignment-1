@@ -17,8 +17,9 @@ Hand& Hand::operator=(const Hand& other){  //copy assignment
     return *this;
 }
 
-Hand::Hand(Hand&& other){ //move constructor
-    other.cards_.clear();
+Hand::Hand(Hand&& other):cards_(std::move(other.cards_)){ 
+    //other.cards_.clear();
+
 }
 
 Hand& Hand::operator=(Hand&& other){ //move assignment
@@ -40,7 +41,7 @@ bool Hand::isEmpty() const{
 }
 
 void Hand::Reverse(){
-    std::reverse(cards_.begin(), cards_.end());
+   //std::reverse(cards_.begin(), cards_.end());
 }
 
 int Hand::PlayCard(){

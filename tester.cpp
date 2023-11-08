@@ -1,9 +1,9 @@
+#include "Player.cpp"
 #include "Deck.hpp"
 #include "Hand.cpp"
-//#include "Player.cpp"
-#include "Card.cpp"
 #include "ActionCard.cpp"
 #include "PointCard.cpp"
+#include "Card.cpp"
 
 int main(){
     ActionCard aCard;
