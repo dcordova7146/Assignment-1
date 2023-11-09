@@ -2,6 +2,7 @@
 
 Card::~Card(){ //destructor
     delete bitmap_;
+    this->bitmap_ = nullptr;
 } 
 
 Card::Card(const Card& rhs){ //copy constructor

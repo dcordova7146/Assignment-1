@@ -30,9 +30,52 @@ void Player::setScore(const int& score){
 }
 
 void Player::play(ActionCard&& card){
-    card.Print();
-    
+    int count;
+    //Print out the instruction
+    std::cout<< "PLAYING ACTION CARD: " << card.getInstruction() << std::endl;
+    std::string instro = card.getInstruction();
+    if(instro == "REVERSE HAND"){
+        hand_.Reverse();
 
+    }
+    else if(instro == "SWAP HAND WITH OPPONENT"){//should be fine
+        Hand temp = hand_;
+        hand_ = opponent_->getHand();
+        opponent_->setHand(temp);
+        //std:swap
+    }
+    else{
+
+    //tokenize the instruction
+    std::string tempWord = "";
+    std::vector<std::string> words;
+    for(int i = 0;i<instro.length();i++){
+        if(instro[i] != ' '){
+            tempWord.push_back(instro[i]);
+        }else{
+            words.push_back(tempWord);
+            tempWord = "";
+        }
+    }
+    if (!tempWord.empty()) {  // Check for the last word
+        words.push_back(tempWord);
+    }
+
+    if(words[0] == "DRAW"){
+        count = std::stoi(words[1]);
+        while(count != 0 && !(pointdeck_->IsEmpty())){//draw would check the empty
+            drawPointCard();
+            count --;
+        }
+    }
+    else if(words[0] == "PLAY"){
+        count = std::stoi(words[1]);
+        while(count != 0 && !(hand_.isEmpty())){
+            playPointCard();
+            count--;
+        }
+    }
+    }
 }
 
 void Player::drawPointCard(){

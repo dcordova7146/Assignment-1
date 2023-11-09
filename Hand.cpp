@@ -1,4 +1,5 @@
 #include "Hand.hpp"
+#include <stack>
 
 Hand::Hand(){
 }
@@ -18,7 +19,6 @@ Hand& Hand::operator=(const Hand& other){  //copy assignment
 }
 
 Hand::Hand(Hand&& other):cards_(std::move(other.cards_)){ 
-    //other.cards_.clear();
 
 }
 
@@ -33,6 +33,7 @@ const std::deque<PointCard>& Hand::getCards() const{
 
 void Hand::addCard(PointCard&& card){
     PointCard newCard = card;
+    newCard.setDrawn(true);
     cards_.push_back(newCard);
 }
 
@@ -41,19 +42,26 @@ bool Hand::isEmpty() const{
 }
 
 void Hand::Reverse(){
-   //std::reverse(cards_.begin(), cards_.end());
+    std::stack <PointCard> stack;
+    while(!cards_.empty()){
+        stack.push(cards_.back());
+        cards_.pop_back();
+    }
+    while(!stack.empty()){
+        cards_.push_front((stack.top()));
+        stack.pop();
+    }
 }
 
 int Hand::PlayCard(){
     if(isEmpty()){
-        std::runtime_error("Hand is Empty.\n");
-        return 0;
+        throw std::runtime_error("Hand is Empty.\n");
     }
-    if(!(cards_.front().isPlayable())){
-        std::runtime_error("Card Not playable.\n");
+    PointCard pCard = cards_.front();
+    if(!(pCard.isPlayable())){
+        throw std::runtime_error("Card Not playable.\n");
         cards_.pop_front();
-        return 0;
     }
     cards_.pop_front();
-    return std::stoi(cards_.front().getInstruction());
+    return std::stoi(pCard.getInstruction());
 }

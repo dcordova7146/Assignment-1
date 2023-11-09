@@ -1,9 +1,9 @@
 #include "ActionCard.hpp"
 
 ActionCard::ActionCard(){
-    // setInstruction("");
-    // setImageData(nullptr);
-    // setDrawn(false);
+    setInstruction("");
+    setImageData(nullptr);
+    setDrawn(false);
     setType(ACTION_CARD);
 }
 
