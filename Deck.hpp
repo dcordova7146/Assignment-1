@@ -89,7 +89,7 @@ void Deck<CardType>::AddCard(const CardType& card){
 template <typename CardType>
 CardType&& Deck<CardType>::Draw(){ 
     if(IsEmpty()){
-        std::runtime_error("Deck is Empty");
+        throw std::runtime_error("Deck is Empty");
     }
     CardType&& dCard = std::move(cards_.back());
     cards_.pop_back();

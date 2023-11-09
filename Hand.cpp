@@ -18,7 +18,7 @@ Hand& Hand::operator=(const Hand& other){  //copy assignment
     return *this;
 }
 
-Hand::Hand(Hand&& other):cards_(std::move(other.cards_)){ 
+Hand::Hand(Hand&& other):cards_(std::move(other.cards_)){  //move constructor
 
 }
 
@@ -55,12 +55,13 @@ void Hand::Reverse(){
 
 int Hand::PlayCard(){
     if(isEmpty()){
+        //return 0;
         throw std::runtime_error("Hand is Empty.\n");
     }
     PointCard pCard = cards_.front();
     if(!(pCard.isPlayable())){
-        throw std::runtime_error("Card Not playable.\n");
         cards_.pop_front();
+        throw std::runtime_error("Card Not playable.\n");
     }
     cards_.pop_front();
     return std::stoi(pCard.getInstruction());

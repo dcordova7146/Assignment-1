@@ -9,8 +9,11 @@ Player::Player(){
 
 Player::~Player(){
     delete opponent_;
+    opponent_ = nullptr;
     delete actiondeck_;
+    actiondeck_= nullptr;
     delete pointdeck_;
+    pointdeck_ = nullptr;
 }
 
 const Hand& Player::getHand() const{
@@ -30,22 +33,11 @@ void Player::setScore(const int& score){
 }
 
 void Player::play(ActionCard&& card){
-    int count;
     //Print out the instruction
     std::cout<< "PLAYING ACTION CARD: " << card.getInstruction() << std::endl;
     std::string instro = card.getInstruction();
-    if(instro == "REVERSE HAND"){
-        hand_.Reverse();
-
-    }
-    else if(instro == "SWAP HAND WITH OPPONENT"){//should be fine
-        Hand temp = hand_;
-        hand_ = opponent_->getHand();
-        opponent_->setHand(temp);
-        //std:swap
-    }
-    else{
-
+    int x = 0; //number of cards to be drawn/played
+    
     //tokenize the instruction
     std::string tempWord = "";
     std::vector<std::string> words;
@@ -61,25 +53,36 @@ void Player::play(ActionCard&& card){
         words.push_back(tempWord);
     }
 
-    if(words[0] == "DRAW"){
-        count = std::stoi(words[1]);
-        while(count != 0 && !(pointdeck_->IsEmpty())){//draw would check the empty
-            drawPointCard();
-            count --;
-        }
+    //Instructions being done
+    if(instro == "REVERSE HAND"){
+        hand_.Reverse();
+    }
+    else if(instro == "SWAP HAND WITH OPPONENT"){
+        Hand temp = hand_;
+        hand_ = opponent_->getHand();
+        opponent_->setHand(temp);
+    }
+    else if(words[0] == "DRAW"){
+            x = std::stoi(words[1]);
+            while(x != 0){//draw would check the empty
+                drawPointCard();
+                x --;
+            }
     }
     else if(words[0] == "PLAY"){
-        count = std::stoi(words[1]);
-        while(count != 0 && !(hand_.isEmpty())){
-            playPointCard();
-            count--;
-        }
-    }
-    }
+            x = std::stoi(words[1]);
+            while(x != 0){
+                playPointCard();
+                x--;
+            }
+     }
+
 }
 
 void Player::drawPointCard(){
-    hand_.addCard(pointdeck_->Draw());
+    if(pointdeck_ != nullptr){
+        hand_.addCard(pointdeck_->Draw());
+    }
 }
 
 void Player::playPointCard(){
