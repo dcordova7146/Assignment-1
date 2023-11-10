@@ -21,7 +21,7 @@ bool ActionCard::validInstro(std::string instro){
     //tokenize the instruction
     std::string tempWord = "";
     std::vector<std::string> words;
-    for(int i = 0;i<instro.length();i++){
+    for(int i = 0;i<instro.size();i++){
         if(instro[i] != ' '){
             tempWord.push_back(instro[i]);
         }else{
@@ -53,12 +53,12 @@ bool ActionCard::validInstro(std::string instro){
 }
 
 void ActionCard::Print() const{
-    std::cout << "Type: " << getType() << "\nInstruction: ";
-    std::cout << getInstruction() + "\nCard: \n";
+    std::cout << "Type: " << getType() << std::endl;
+    std::cout <<"Instruction: "<< getInstruction() << std::endl;
+    std::cout << "Card: " << std::endl;
     if(getImageData() == nullptr){
-        std::cout << "No image data\n";
+        std::cout << "No image data" <<std::endl;
     }else{
-        std::cout << getImageData() <<  "\n";
-    }
-        
+        std::cout << getImageData() <<std::endl;
+    } 
 }

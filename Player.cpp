@@ -8,12 +8,15 @@ Player::Player(){
 }
 
 Player::~Player(){
-    delete opponent_;
-    opponent_ = nullptr;
-    delete actiondeck_;
-    actiondeck_= nullptr;
-    delete pointdeck_;
-    pointdeck_ = nullptr;
+    if(opponent_ != nullptr){
+        opponent_ = nullptr;
+    }
+    if(actiondeck_ != nullptr){
+        actiondeck_ = nullptr;
+    }
+    if(pointdeck_ != nullptr){
+        pointdeck_ = nullptr;
+    }
 }
 
 const Hand& Player::getHand() const{
@@ -33,15 +36,14 @@ void Player::setScore(const int& score){
 }
 
 void Player::play(ActionCard&& card){
-    //Print out the instruction
-    std::cout<< "PLAYING ACTION CARD: " << card.getInstruction() << std::endl;
     std::string instro = card.getInstruction();
+    std::cout<< "PLAYING ACTION CARD: " << instro << std::endl;    
     int x = 0; //number of cards to be drawn/played
     
     //tokenize the instruction
     std::string tempWord = "";
     std::vector<std::string> words;
-    for(int i = 0;i<instro.length();i++){
+    for(int i = 0;i<instro.size();i++){
         if(instro[i] != ' '){
             tempWord.push_back(instro[i]);
         }else{
@@ -52,19 +54,24 @@ void Player::play(ActionCard&& card){
     if (!tempWord.empty()) {  // Check for the last word
         words.push_back(tempWord);
     }
+    for(int i = 0;i<words.size();i++){
+        std::cout<<words[i]<<std::endl;
+    }
 
-    //Instructions being done
     if(instro == "REVERSE HAND"){
         hand_.Reverse();
+        std::cout << "Hand has been reversed" << std::endl;
     }
     else if(instro == "SWAP HAND WITH OPPONENT"){
         Hand temp = hand_;
         hand_ = opponent_->getHand();
         opponent_->setHand(temp);
+        std::cout << "hand has swapped with opponent" << std::endl;
     }
     else if(words[0] == "DRAW"){
             x = std::stoi(words[1]);
             while(x != 0){//draw would check the empty
+                std::cout << "point card has been drawn" << std::endl;
                 drawPointCard();
                 x --;
             }
@@ -72,11 +79,12 @@ void Player::play(ActionCard&& card){
     else if(words[0] == "PLAY"){
             x = std::stoi(words[1]);
             while(x != 0){
+                std::cout << "point card has been played" << std::endl;
                 playPointCard();
                 x--;
             }
-     }
-
+    }
+    std::cout << "===========" << std::endl;
 }
 
 void Player::drawPointCard(){
@@ -86,7 +94,10 @@ void Player::drawPointCard(){
 }
 
 void Player::playPointCard(){
-    hand_.PlayCard();
+    int score = getScore();
+    score += hand_.PlayCard();
+    setScore(score);
+    
 }
 
 void Player::setOpponent(Player* opponent){

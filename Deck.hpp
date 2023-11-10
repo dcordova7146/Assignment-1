@@ -77,13 +77,13 @@ Deck<CardType>::Deck(){
 }
 
 template <typename CardType>
-Deck<CardType>::~Deck(){
+Deck<CardType>::~Deck(){  
     cards_.clear();
 }
 
 template <typename CardType>
 void Deck<CardType>::AddCard(const CardType& card){
-    cards_.push_back(card);
+    cards_.push_back(std::move(card));
 }
 
 template <typename CardType>
@@ -115,6 +115,7 @@ int Deck<CardType>::getSize() const{
 
 template <typename CardType>
 std::vector<CardType> Deck<CardType>::getDeck() const{
+    std::cout << "deck got called" <<std::endl;
     return cards_;
     
 }
